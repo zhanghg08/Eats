@@ -1,8 +1,10 @@
 package api;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,8 +40,29 @@ public class VisitHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			DBConnection connection = new MySQLDBConnection();
+			JSONArray array = null;
+			// allow access only if session exists
+			/*
+			 * if (!RpcParser.sessionValid(request, connection)) {
+			 * response.setStatus(403); return; }
+			 */
+			if (request.getParameterMap().containsKey("user_id")) {
+				String userId = request.getParameter("user_id");
+				Set<String> visited_business_id = connection.getVisitedRestaurants(userId);
+				array = new JSONArray();
+				for (String id : visited_business_id) {
+					array.put(connection.getRestaurantsById(id, true));
+				}
+				RpcParser.writeOutput(response, array);
+			} else {
+				RpcParser.writeOutput(response, new JSONObject().put("status", "InvalidParameter"));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -47,6 +70,7 @@ public class VisitHistory extends HttpServlet {
 	 *      response)
 	 */
 	private static final DBConnection connection = new MySQLDBConnection();
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -70,6 +94,33 @@ public class VisitHistory extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			// allow access only if session exists
+			/*
+			 * if (!RpcParser.sessionValid(request, connection)) {
+			 * response.setStatus(403); return; }
+			 */
+			JSONObject input = RpcParser.parseInput(request);
+			if (input.has("user_id") && input.has("visited")) {
+				String userId = (String) input.get("user_id");
+				JSONArray array = (JSONArray) input.get("visited");
+				List<String> visitedRestaurants = new ArrayList<>();
+				for (int i = 0; i < array.length(); i++) {
+					String businessId = (String) array.get(i);
+					visitedRestaurants.add(businessId);
+				}
+				connection.unsetVisitedRestaurants(userId, visitedRestaurants);
+				RpcParser.writeOutput(response, new JSONObject().put("status", "OK"));
+			} else {
+				RpcParser.writeOutput(response, new JSONObject().put("status", "InvalidParameter"));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
