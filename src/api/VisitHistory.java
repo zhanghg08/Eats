@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import db.DBConnection;
+import db.MongoDBConnection;
 import db.MySQLDBConnection;
 
 /**
@@ -41,7 +42,7 @@ public class VisitHistory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			DBConnection connection = new MySQLDBConnection();
+			DBConnection connection = new MongoDBConnection();
 			JSONArray array = null;
 			// allow access only if session exists
 			/*
@@ -69,7 +70,7 @@ public class VisitHistory extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	private static final DBConnection connection = new MySQLDBConnection();
+	private static final DBConnection connection = new MongoDBConnection();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

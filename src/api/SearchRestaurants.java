@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import db.DBConnection;
+import db.MongoDBConnection;
 import db.MySQLDBConnection;
 
 /**
@@ -38,7 +39,7 @@ public class SearchRestaurants extends HttpServlet {
     protected void doGet(HttpServletRequest request,
     		HttpServletResponse response) throws ServletException, IOException {
             JSONArray array = new JSONArray();
-			DBConnection connection = new MySQLDBConnection();
+			DBConnection connection = new MongoDBConnection();
 			if (request.getParameterMap().containsKey("user_id")
 					&& request.getParameterMap().containsKey("lat")
 					&& request.getParameterMap().containsKey("lon")) {

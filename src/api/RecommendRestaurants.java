@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import db.DBConnection;
+import db.MongoDBConnection;
 import db.MySQLDBConnection;
 
 /**
@@ -24,7 +25,7 @@ import db.MySQLDBConnection;
 public class RecommendRestaurants extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
+	/**s
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public RecommendRestaurants() {
@@ -39,7 +40,7 @@ public class RecommendRestaurants extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		JSONArray array = null;
-		DBConnection connection = new MySQLDBConnection();
+		DBConnection connection = new MongoDBConnection();
 
 		if (request.getParameterMap().containsKey("user_id")) {
 			String userId = request.getParameter("user_id");
