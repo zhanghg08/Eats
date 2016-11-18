@@ -42,7 +42,7 @@ public class VisitHistory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			DBConnection connection = new MongoDBConnection();
+			DBConnection connection = new MySQLDBConnection();
 			JSONArray array = null;
 			// allow access only if session exists
 			/*
@@ -70,7 +70,7 @@ public class VisitHistory extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	private static final DBConnection connection = new MongoDBConnection();
+	private static final DBConnection connection = new MySQLDBConnection();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
