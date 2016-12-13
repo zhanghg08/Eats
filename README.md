@@ -5,21 +5,21 @@ Eats is a personalized webpage focus on helping people find their favorite restu
 ## functionality
 
 1. Search nearby resaurants
-![Alt text](img/search.jpg)
+![Alt text](img/search.png)
 2. Save your favorite restaurants on the history
 3. Recommend your new restaurants
 
-## Motivation
+## Recommendation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+This recmommendation is content-based, which means I will recommend you with the same categories' restaurants you put them in the history list, but not the same exact restaurants. ^-^.
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+Download this repository into your loacal then use Tomcat Apache Server to start this project. Enjoy!
 
 ## API Reference
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+This project is using Yelp API[https://github.com/Yelp/yelp-api] to fetch the data of restaurants
 
 ## License
 
