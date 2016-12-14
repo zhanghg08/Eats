@@ -97,5 +97,9 @@ public interface DBConnection {
 	 * @return First and Last Name
 	 */
 	public String getFirstLastName(String userId);
-
+	
+	/**
+	 * insert signup user's info into the db
+	 */
+	public void signUpUser(String userId, String password, String firstName, String lastName);
 }
