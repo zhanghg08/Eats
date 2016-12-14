@@ -1,26 +1,19 @@
 
-
 package api;
-
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
-
-
 /**
- * A utility class to handle rpc related parsing logics. 
- */	
+ * A utility class to handle rpc related parsing logics.
+ */
 public class RpcParser {
 	public static JSONObject parseInput(HttpServletRequest request) {
 		StringBuffer jb = new StringBuffer();
@@ -38,9 +31,8 @@ public class RpcParser {
 		return null;
 	}
 
-
 	public static void writeOutput(HttpServletResponse response, JSONObject obj) {
-		try {			
+		try {
 			response.setContentType("application/json");
 			response.addHeader("Access-Control-Allow-Origin", "*");
 			PrintWriter out = response.getWriter();
@@ -49,11 +41,11 @@ public class RpcParser {
 			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 	}
-	
+
 	public static void writeOutput(HttpServletResponse response, JSONArray array) {
-		try {			
+		try {
 			response.setContentType("application/json");
 			response.addHeader("Access-Control-Allow-Origin", "*");
 			PrintWriter out = response.getWriter();
@@ -62,6 +54,6 @@ public class RpcParser {
 			out.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 }
