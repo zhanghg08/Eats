@@ -7,7 +7,9 @@ Eats is a personalized webpage focus on helping people find their favorite restu
 1. Search nearby resaurants
 ![Alt text](img/search.png)
 2. Save your favorite restaurants on the history
+![Alt text](img/favorite.png)
 3. Recommend your new restaurants
+![Alt text](img/recommendation.png)
 
 ## Recommendation
 
