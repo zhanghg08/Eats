@@ -50,10 +50,10 @@ public class RecommendRestaurants extends HttpServlet {
 		}
 
 		JSONArray array = null;
-		DBConnection connection = new MongoDBConnection();
+		DBConnection connection = new MySQLDBConnection();
 
 		if (request.getParameterMap().containsKey("user_id")) {
-			String userId = request.getParameter("user_id");
+			String userId = (String) session.getAttribute("user");
 			array = connection.recommendRestaurants(userId);
 		}
 
