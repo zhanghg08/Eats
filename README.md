@@ -21,8 +21,8 @@ Download this repository into your loacal then use Tomcat Apache Server to start
 
 ## API Reference
 
-This project is using Yelp API[https://github.com/Yelp/yelp-api] to fetch the data of restaurants
+This project is using [Yelp API](https://github.com/Yelp/yelp-api)to fetch the data of restaurants
 
-## License
+##License
 
-MIT licience
+MIT is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
