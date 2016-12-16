@@ -54,6 +54,7 @@ public class RecommendRestaurants extends HttpServlet {
 
 		if (request.getParameterMap().containsKey("user_id")) {
 			String userId = (String) session.getAttribute("user");
+		//	String userId = request.getParameter("user_id");
 			array = connection.recommendRestaurants(userId);
 		}
 
